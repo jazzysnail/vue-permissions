@@ -6,9 +6,12 @@ import event from './core/event';
 import install from './core/install';
 
 const Permissions = function (option) {
+  this.$options = option;
   this.$tokenSet = [];
   this.$on = this.eventCenter.on;
   this.$emit = this.eventCenter.emit;
+  this.$get = option.get || null;
+  this.$set = option.set || null;
   this.components = {};
   this.confuse = option.confuse;
   // 进行混淆计算
@@ -21,7 +24,7 @@ const Permissions = function (option) {
   } else {
     this.permissions = option.permissions;
   }
-}
+};
 
 install(Permissions);
 action(Permissions);

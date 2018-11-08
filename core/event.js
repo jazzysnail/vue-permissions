@@ -19,15 +19,14 @@ export default function (Permissions) {
      * @param  {String}
      * @return {Void}
      */
-    emit(event) {
+    emit(event, ...arg) {
       if (this.eventCenter[event]) {
         this.eventCenter[event].forEach(fun => {
           if (fun instanceof Function) {
-            fun();
+            fun(...arg);
           }
         });
       }
     }
   }
 }
-

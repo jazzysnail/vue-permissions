@@ -1,12 +1,12 @@
 <template>
-  <div v-if="show" style="display: inline-block;">
+  <div v-if="show">
     <slot></slot>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'permissionBundle',
+    name: 'permissionScope',
     props: {
       pass: {
         type: String,
@@ -15,7 +15,8 @@
       nonPass: {
         type: String,
         default: ''
-      }
+      },
+      scope: [String, Array, Object, Number]
     },
     data() {
       return {
@@ -35,6 +36,7 @@
       },
       update() {
         this.show = this.computeShow();
+        this.$emit('changed', this.show, this.scope);
       }
     },
     created() {
